@@ -1,0 +1,83 @@
+/* 전체 레이아웃 */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2c3e50;
+    color: white;
+    padding: 0 20px;
+    height: 60px;
+}
+
+.header .logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info span {
+    margin-right: 15px;
+}
+
+.header .user-info button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Body */
+.layout-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Submenu */
+.submenu {
+    width: 200px;
+    background-color: #34495e;
+    color: white;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+
+.submenu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.submenu li {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.submenu li:hover {
+    background-color: #3d566e;
+}
+
+.submenu .submenu-children {
+    padding-left: 15px;
+}
+
+.submenu .menu-parent {
+    font-weight: bold;
+}
+
+/* Content */
+.layout-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #ecf0f1;
+}

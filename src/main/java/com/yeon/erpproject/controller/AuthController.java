@@ -11,6 +11,8 @@ import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -49,12 +51,23 @@ public class AuthController {
     // 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        // 1. 토큰 생성
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
-
         String token = jwtProvider.createToken(authentication);
-        return ResponseEntity.ok(Map.of("token", token));
+
+        // 2. 사용자 조회
+        Employee user = employeeRepository.findByUsername(request.getUsername())
+                .orElseThrow(() -> new RuntimeException("사용자 없음"));
+
+        // 로그인 성공 시
+        Map<String, Object> res = new HashMap<>();
+        res.put("token", token);
+        res.put("username", user.getUsername());
+        res.put("name", user.getName());
+        res.put("role", user.getRole());
+        return ResponseEntity.ok(res);
     }
 
     // 로그아웃 (JWT 기반이므로 클라이언트가 토큰 삭제하면 됨)
