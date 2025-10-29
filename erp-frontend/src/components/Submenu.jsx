@@ -11,7 +11,6 @@ export default function Submenu() {
     // 메뉴 필터링 함수(메뉴 목록에서 내 권한(role) 이 포함된 것)
     // - 상위 메뉴 및 하위 메뉴 모두 userRole이 포함된 항목만 남김
     const filterMenuByRole = (menus, role) => {
-        console.log(menus, role)
         return menus
             .filter(menu => menu.roles.includes(role)) // ① 상위 메뉴 권한 확인
             .map(menu => ({

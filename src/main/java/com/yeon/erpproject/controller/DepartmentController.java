@@ -15,12 +15,18 @@ public class DepartmentController {
     private final DepartmentService departmentService;
 
     @GetMapping
-    public List<Department> findAll() {
+    public List<Department> getAll() {
         return departmentService.findAll();
     }
 
     @PostMapping
-    public Department save(@RequestBody Department dept) {
+    public Department create(@RequestBody Department dept) {
+        return departmentService.save(dept);
+    }
+
+    @PutMapping("/{id}")
+    public Department update(@PathVariable Long id, @RequestBody Department dept) {
+        dept.setId(id);
         return departmentService.save(dept);
     }
 

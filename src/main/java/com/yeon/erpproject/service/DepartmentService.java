@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +18,9 @@ public class DepartmentService {
 
     public List<Department> findAll() {
         return departmentRepository.findAll();
+    }
+    public Optional<Department> findById(Long id) {
+        return departmentRepository.findById(id);
     }
 
     public Department save(Department dept) {
