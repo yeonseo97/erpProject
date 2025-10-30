@@ -3,6 +3,8 @@ package com.yeon.erpproject.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
@@ -29,4 +31,5 @@ public class Employee {
     private String name;     // 실제 이름
     private String email;    // 이메일
     private String phone;    // 전화번호
+    private LocalDate createdAt;  // 생성일
 }
