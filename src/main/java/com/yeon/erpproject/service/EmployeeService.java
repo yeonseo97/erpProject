@@ -19,6 +19,10 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id).orElseThrow(() -> new RuntimeException("사원을 찾을 수 없습니다."));
+    }
+
     public Employee save(Employee emp) {
         return employeeRepository.save(emp);
     }

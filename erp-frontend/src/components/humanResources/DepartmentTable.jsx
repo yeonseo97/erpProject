@@ -46,7 +46,12 @@ const DepartmentTable = () => {
         { field: "id", headerName: "ID", width: 80 },
         { field: "name", headerName: "부서명", width: 180 },
         { field: "manager", headerName: "관리자", width: 150 },
-        { field: "createdAt", headerName: "등록일자", width: 150 },
+        {
+            field: "createdAt",
+            headerName: "등록일자",
+            width: 150,
+            valueGetter: (params) => new Date(params.value).toLocaleDateString(),
+        },
         {
             field: "actions",
             headerName: "관리",

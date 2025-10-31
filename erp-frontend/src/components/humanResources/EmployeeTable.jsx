@@ -26,7 +26,7 @@ const EmployeeTable = () => {
     }, []);
 
     const handleEdit = (emp) => {
-        setEditDept(emp);
+        setEditEmp(emp);
         setModalOpen(true);
     };
 
@@ -46,11 +46,21 @@ const EmployeeTable = () => {
         { field: "id", headerName: "ID", width: 80 },
         { field: "username", headerName: "계정", width: 180 },
         { field: "name", headerName: "사원명", width: 180 },
-        { field: "department", headerName: "부서명", width: 180 },
+        {
+          field: "department",
+          headerName: "부서명",
+          width: 180,
+          valueGetter: (params) => params.row.department?.name || "-"
+        },
         { field: "email", headerName: "이메일", width: 180 },
         { field: "phone", headerName: "전화번호", width: 180 },
         { field: "role", headerName: "권한", width: 180 },
-        { field: "createdAt", headerName: "등록일자", width: 150 },
+        {
+            field: "createdAt",
+            headerName: "등록일자",
+            width: 150,
+            valueGetter: (params) => new Date(params.value).toLocaleDateString(),
+        },
         {
             field: "actions",
             headerName: "관리",
@@ -85,7 +95,7 @@ const EmployeeTable = () => {
                 <EmployeeModal
                     open={modalOpen}
                     onClose={() => setModalOpen(false)}
-                    editDept={editEmp}
+                    editEmp={editEmp}
                     refresh={fetchEmployees}
                 />
             )}
