@@ -32,4 +32,11 @@ public class Employee {
     private String email;    // 이메일
     private String phone;    // 전화번호
     private LocalDate createdAt;  // 생성일
+
+    // OAuth 로그인용
+    @Column(unique = true)
+    private String oauthProvider; // KAKAO, GOOGLE 등
+    @Column(unique = true)
+    private String oauthId;       // 제공자에서 받은 고유 ID
+
 }

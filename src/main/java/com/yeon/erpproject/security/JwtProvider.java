@@ -29,7 +29,15 @@ public class JwtProvider {
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
-
+    // OAuth2용 토큰(카카오)
+    public String createToken(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MS))
+                .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
+                .compact();
+    }
     // 토큰에서 username 추출
     public String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()

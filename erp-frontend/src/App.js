@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
+import KakaoCallback from "./pages/KakaoCallback";
 import DepartmentManage from "./pages/humanResources/departmentManage";
 import BomManage from "./pages/manufacturing/bomManage";
 import Login from "./pages/Login";
@@ -27,6 +28,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Login />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/oauth/kakao/callback" element={<KakaoCallback />} />
                     <Route path="/" element={<Layout />}>
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="humanResources/departmentManage" element={<DepartmentManage />} />

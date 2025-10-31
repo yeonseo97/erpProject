@@ -1,6 +1,6 @@
-import {useContext, useState} from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {AuthContext} from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Login() {
     const [username, setUserId] = useState("");  // userId 상태 변수와 초기값 빈 문자열, setUserId 비밀번호 입력값을 업데이트
@@ -43,6 +43,17 @@ export default function Login() {
         }
     };
 
+    const handleKakaoLogin = async () => {
+        try {
+            const res = await fetch("/auth/oauth/kakao/url");
+            const data = await res.json();
+            window.location.href = data.url; // 백엔드에서 받은 URL로 이동
+        } catch (err) {
+            console.error(err);
+            alert("카카오 로그인 URL 요청 실패");
+        }
+    };
+
     return ( // 컴포넌트가 화면에 보여주는 값
         <div style={styles.container}>
             <div style={styles.card}>
@@ -71,6 +82,9 @@ export default function Login() {
                 <p style={styles.signup}>
                     계정이 없으신가요? <a href="/signup">회원가입</a>
                 </p>
+                <button onClick={handleKakaoLogin} style={styles.oauthButton}>
+                  카카오 계정으로 로그인
+                </button>
             </div>
         </div>
     );
@@ -123,5 +137,17 @@ const styles = {
         marginTop: "15px",
         fontSize: "13px",
         color: "#666",
+    },
+    container: {
+        height: "100vh", display: "flex", justifyContent: "center", alignItems: "center", background: "#f4f6f9"
+    },
+    card: {
+        width: "350px", padding: "30px", borderRadius: "12px", background: "#fff", boxShadow: "0 4px 10px rgba(0,0,0,0.1)", textAlign: "center"
+    },
+    title: {
+        marginBottom: "20px", fontSize: "20px", fontWeight: "bold", color: "#333"
+    },
+    oauthButton: {
+        marginTop: "15px", padding: "12px", background: "#FEE500", color: "#3C1E1E", border: "none", borderRadius: "6px", fontSize: "16px", cursor: "pointer"
     },
 };
